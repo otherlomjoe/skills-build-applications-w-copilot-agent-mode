@@ -18,13 +18,11 @@ import os
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
+
 from .views import UserViewSet, TeamViewSet, ActivityViewSet, WorkoutViewSet, LeaderboardViewSet, api_root
 
-codespace_name = os.environ.get('CODESPACE_NAME')
-if codespace_name:
-    base_url = f"https://{codespace_name}-8000.app.github.dev"
-else:
-    base_url = "http://localhost:8000"
+
+# base_url is now handled in views/api_root using the environment variable
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet, basename='user')
